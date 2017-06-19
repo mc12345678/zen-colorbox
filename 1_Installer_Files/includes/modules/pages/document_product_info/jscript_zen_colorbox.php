@@ -15,6 +15,9 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 <script language="javascript" type="text/javascript">
 <?php
   require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
+  $anchor = 'a[href*="popupWindowPrice"]';
+  $closenear = 'td';
+  require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_link.php');
 ?>
 </script>
 

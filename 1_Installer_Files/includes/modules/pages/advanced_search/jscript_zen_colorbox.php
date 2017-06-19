@@ -14,19 +14,10 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 ?>
 
 <script language="javascript" type="text/javascript">
-jQuery(function($) {
-  // Search Help on advanced search
-  var searchLink = $('a[href*="popupWindow"]');
-  var searchUrl = searchLink.attr('href').match(/'(.*?)'/)[1];
-  searchLink.attr({
-    'href':'#'
-  }).colorbox({
-    'href':searchUrl,
-    width: '550px',
-    onComplete: function(){
-      $('#cboxLoadedContent').find('a[href*="window.close"]').closest('p').hide();
-    }
-  });
-});
+<?php
+$anchor = 'a[href*="popupWindow"]';
+$closenear = 'p';
+require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_js_link.php');
+?>
 </script>
 <?php  }
