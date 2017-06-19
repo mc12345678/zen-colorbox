@@ -12,7 +12,7 @@
 if (ZEN_COLORBOX_STATUS == 'true' && ZEN_COLORBOX_EZPAGES == 'true') {
   require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
 ?>
-
+<script language="javascript" type="text/javascript">
 jQuery(function($) {
   fileTypesString = <?php echo ("'" . ZEN_COLORBOX_FILE_TYPES . ",". "'");?>;
   fileTypes = $.each(fileTypesString.split(",").slice(0,-1), function(index, item) {
@@ -20,4 +20,5 @@ jQuery(function($) {
     $("a[rel^='colorbox']").colorbox({<?php require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/options.php'); if (ZEN_COLORBOX_GALLERY_MODE == 'false'){ echo ",rel:'nofollow'";} ?>});
   });
 });
-//--></script><?php  } ?>
+</script>
+<?php  }

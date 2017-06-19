@@ -13,6 +13,7 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 	require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
 ?>
 
+<script language="javascript" type="text/javascript">
 jQuery(function($) {
   // Search Help on advanced search
   var searchLink = $('a[href*="popupWindow"]');
@@ -27,4 +28,5 @@ jQuery(function($) {
     }
   });
 });
-//--></script><?php  } ?>
+</script>
+<?php  }

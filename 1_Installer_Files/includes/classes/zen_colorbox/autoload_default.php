@@ -14,4 +14,3 @@ jQuery(function($) {
   // Disable Colobox on main reviews page image
   $("#productMainImageReview a").removeAttr("rel");
 });
-//--></script>

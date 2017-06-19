@@ -11,9 +11,11 @@
 
 if (ZEN_COLORBOX_STATUS == 'true') {
   require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
-  require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
 ?>
-<script>
+<script language="javascript" type="text/javascript">
+<?php
+  require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
+?>
   jQuery(function($) {
   // Quantity Discounts Available
   var discountPriceLink = $('a[href*="popupWindowPrice"]');
@@ -33,4 +35,4 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 
 </script>
 
-<?php  } ?>
+<?php  }

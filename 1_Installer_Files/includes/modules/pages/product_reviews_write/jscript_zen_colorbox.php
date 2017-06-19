@@ -10,7 +10,12 @@
  */
 
 if (ZEN_COLORBOX_STATUS == 'true') {
-	require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
- 	require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
-}
+  require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
 ?>
+<script language="javascript" type="text/javascript">
+<?php
+  require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
+?>
+</script>
+<?php  }
+

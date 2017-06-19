@@ -10,4 +10,4 @@
  */
 echo '<script type="text/javascript" src="' . $template->get_template_dir('.js', DIR_WS_TEMPLATE, $current_page_base, 'jscript') . '/jquery.colorbox-min.js"></script>';
 ?>
-<script language="javascript" type="text/javascript">
+<?php // <script language="javascript" type="text/javascript">

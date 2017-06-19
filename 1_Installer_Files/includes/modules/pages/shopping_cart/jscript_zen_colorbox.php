@@ -12,6 +12,7 @@
 if (ZEN_COLORBOX_STATUS == 'true') {
   require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
 ?>
+<script language="javascript" type="text/javascript">
 
 jQuery(function($) {
   //select the help link based on the original js function name
@@ -25,4 +26,4 @@ jQuery(function($) {
     }
   });
 });
-//--></script><?php  } ?>
+</script><?php  }
