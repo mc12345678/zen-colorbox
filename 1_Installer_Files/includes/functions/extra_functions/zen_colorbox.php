@@ -17,11 +17,19 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
     $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
   }
 
+  $basepath = "";
+  $realBase = realpath($basepath);
+  $userpath = $basepath . $src;
+  $realUserPath = realpath($userpath);
+  if ($realUserPath === false || strpos($realUserPath, $realBase) !== 0) {
+      $src = '';
+  }
+
   if ((empty($src) || ($src == DIR_WS_IMAGES)) && (IMAGE_REQUIRED == 'false')) {
     return false;
   }
 
-  // if not in current template switch to template_default
+  // replace template path information with template_default if file not present
   if (!file_exists($src)) {
     $src = str_replace(DIR_WS_TEMPLATES . $template_dir, DIR_WS_TEMPLATES . 'template_default', $src);
   }
