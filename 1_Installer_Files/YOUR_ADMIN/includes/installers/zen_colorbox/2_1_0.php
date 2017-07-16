@@ -10,21 +10,40 @@
  */
 /*
   V2.1, What changed:
-    Added JSON response information when retrieving results.
-    Incorporated the use of Zen Cart's provided zcJS when it is available.
-    Made the DPU class part of the overall system to better support additional observers as needed.
-    Rewrote the data collection about a product to improve ability to compare to the active cart.
-    Modified quantity reporting to provide quantity already in cart for selected attributes if the quantity is greater than zero.
-    Incorporated forum correction for operation when DPU_SHOW_LOADING_IMAGE is set to false.
-    Maintained the "default" XML response if JSON is not requested to align with potential historical alterations.
-    Added the restoration of the price display if the transaction fails.
-    Added jscript function to perform data/screen update/swap.
-    Added this additional installer feature to support improved installation/version control.
+  
+- Added this additional installer feature to support improved installation/version 
+    control and offers version notification/updating without remembering a specific
+    line in a file which helps with auto-notification of available updates.
+- Added action for the installer to run only from the admin and if installed
+    on the catalog side to log an error and then disappear as well to run only when
+    not logging in so that notifications will be seen.
+- Split javascript related files to support incorporation into other plugins.
+- Moved some of the script related tags to an outside "helper" file in order
+    to support use/reuse of the color box base code in other plugins such as 
+    Attribute Image Swap.
+- Removed unbalanced unused html code to allow for validation of the web page.
+- Simplified the calling process of the code to display the color box
+    by referencing/calling the code instead of requiring full
+    replacement for each minor change.
+- Flushed out some of the additional popup notes that were being worked on
+    by DivaVocals and Daniel Hopkins.
+- Updated the jQuery version to 1.12.4
+- Updated the Colorbox version to 1.6.4
+- Modified instructions to show SQL queries that are more representative of the
+    current expectation to only assign values in the query to those necessary to
+    support the queries result and not include additional fields such as auto-incrementers,
+    fields that have default values unrelated to the plugin, and to not expect
+    that the number of fields in the table are fixed to just the fields provided in the
+    original installation.
 */
 
 
 $zc150 = (PROJECT_VERSION_MAJOR > 1 || (PROJECT_VERSION_MAJOR == 1 && substr(PROJECT_VERSION_MINOR, 0, 3) >= 5));
-if ($zc150) { // continue Zen Cart 1.5.0
+$zc130 = (PROJECT_VERSION_MAJOR > 1 || (PROJECT_VERSION_MAJOR == 1 && substr(PROJECT_VERSION_MINOR, 0, 3) >= 3));
+if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
+
+    // Set the sort order of the configuration group to be equal to the configuration_group_id, idea being that each new group will be added to the end.
+    $db->Execute("UPDATE " . TABLE_CONFIGURATION_GROUP . " SET configuration_group_description = 'Set " . $module_name . " Configuration Options' WHERE configuration_group_id = " . $configuration_group_id);
 
     // Initialize the variable.
     $sort_order = array();
@@ -34,23 +53,6 @@ if ($zc150) { // continue Zen Cart 1.5.0
      *   Identify the order in which the keys should be added for display.
     */
     $sort_order = array(
-                    array('configuration_group_id' => array('value' => $configuration_group_id,
-                                                   'type' => 'integer'),
-                      'configuration_key' => array('value' => $module_constant . '_VERSION',
-                                                   'type' => 'string'),
-                      'configuration_title' => array('value' => 'Zen Colorbox Version',
-                                                   'type' => 'string'),
-                      'configuration_value' => array('value' => '1.0',
-                                                   'type' => 'string'),
-                      'configuration_description' => array('value' => 'Zen Colorbox Version',
-                                                   'type' => 'string'),
-                      'date_added' => array('value' => 'NOW()',
-                                                   'type' => 'noquotestring'),
-                      'use_function' => array('value' => 'NULL',
-                                                   'type' => 'noquotestring'),
-                      'set_function' => array('value' => 'zen_cfg_select_option(array(\'1.0\'),',
-                                                   'type' => 'string'),
-                      ),
                 array('configuration_group_id' => array('value' => $configuration_group_id,
                                                    'type' => 'integer'),
                       'configuration_key' => array('value' => 'ZEN_COLORBOX_STATUS',
@@ -68,6 +70,23 @@ if ($zc150) { // continue Zen Cart 1.5.0
                       'set_function' => array('value' => 'zen_cfg_select_option(array(\'true\', \'false\'),',
                                                    'type' => 'string'),
                       ),
+                    array('configuration_group_id' => array('value' => $configuration_group_id,
+                                                   'type' => 'integer'),
+                      'configuration_key' => array('value' => $module_constant . '_VERSION',
+                                                   'type' => 'string'),
+                      'configuration_title' => array('value' => $module_name . ' Version',
+                                                   'type' => 'string'),
+                      'configuration_value' => array('value' => '0.0.0',
+                                                   'type' => 'string'),
+                      'configuration_description' => array('value' => $module_name . ' Version',
+                                                   'type' => 'string'),
+                      'date_added' => array('value' => 'NOW()',
+                                                   'type' => 'noquotestring'),
+                      'use_function' => array('value' => 'NULL',
+                                                   'type' => 'noquotestring'),
+                      'set_function' => array('value' => 'zen_cfg_select_option(array(\'0.0.0\'),',
+                                                   'type' => 'string'),
+                      ),
                 array('configuration_group_id' => array('value' => $configuration_group_id,
                                                    'type' => 'integer'),
                       'configuration_key' => array('value' => 'ZEN_COLORBOX_OVERLAY_OPACITY',
@@ -82,8 +101,8 @@ if ($zc150) { // continue Zen Cart 1.5.0
                                                    'type' => 'noquotestring'),
                       'use_function' => array('value' => 'NULL',
                                                    'type' => 'noquotestring'),
-                      'set_function' => array('value' => 'zen_cfg_select_option(array(''0'', ''0.1'', ''0.2'', ''0.3'', ''0.4'', ''0.5'', ''0.6'', ''0.7'', ''0.8'', ''0.9'', ''1''),',
-                                                   'type' => 'noquotestring'),
+                      'set_function' => array('value' => 'zen_cfg_select_option(array(\'0\', \'0.1\', \'0.2\', \'0.3\', \'0.4\', \'0.5\', \'0.6\', \'0.7\', \'0.8\', \'0.9\', \'1\'),',
+                                                   'type' => 'string'),
                       ),
                 array('configuration_group_id' => array('value' => $configuration_group_id,
                                                    'type' => 'integer'),
@@ -184,7 +203,7 @@ if ($zc150) { // continue Zen Cart 1.5.0
                                                    'type' => 'noquotestring'),
                       'use_function' => array('value' => 'NULL',
                                                    'type' => 'noquotestring'),
-                      'set_function' => array('value' => 'zen_cfg_select_option(array(\'true\', \'false\'),'
+                      'set_function' => array('value' => 'zen_cfg_select_option(array(\'true\', \'false\'),',
                                                    'type' => 'string'),
                 ),
                 array('configuration_group_id' => array('value' => $configuration_group_id,
@@ -321,7 +340,7 @@ if ($zc150) { // continue Zen Cart 1.5.0
                       'use_function' => array('value' => 'NULL',
                                                    'type' => 'noquotestring'),
                       'set_function' => array('value' => 'zen_cfg_select_option(array(\'true\', \'false\'),',
-                                                   'type' => 'noquotestring'),
+                                                   'type' => 'string'),
                 ),
                 array('configuration_group_id' => array('value' => $configuration_group_id,
                                                    'type' => 'integer'),
@@ -342,7 +361,7 @@ if ($zc150) { // continue Zen Cart 1.5.0
                 ),
     );
 
-    $Zen_ColorboxPageExists = FALSE;
+    $Zen_ColorboxPageExists = false;
 
     // Attempt to use the ZC function to test for the existence of the page otherwise detect using SQL.
     if (function_exists('zen_page_key_exists'))
@@ -352,14 +371,14 @@ if ($zc150) { // continue Zen Cart 1.5.0
         $Zen_ColorboxPageExists_result = $db->Execute("SELECT FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = 'config" . $admin_page . "' LIMIT 1");
         if ($Zen_ColorboxPageExists_result->EOF && $Zen_ColorboxPageExists_result->RecordCount() == 0) {
         } else {
-            $Zen_ColorboxPageExists = TRUE;
+            $Zen_ColorboxPageExists = true;
         }
     }
 
     // if the admin page is not installed, then insert it using either the ZC function or straight SQL.
     if (!$Zen_ColorboxPageExists)
     {
-        if ((int)$configuration_group_id > 0) {
+        if ((int)$configuration_group_id > 0 && $zc150) {
 
             $page_sort_query = "SELECT MAX(sort_order) + 1 as max_sort FROM `". TABLE_ADMIN_PAGES ."` WHERE menu_key='configuration'";
             $page_sort = $db->Execute($page_sort_query);
@@ -380,7 +399,7 @@ if ($zc150) { // continue Zen Cart 1.5.0
 
             $sql = "INSERT IGNORE INTO " . TABLE_CONFIGURATION . " (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description, sort_order, date_added, use_function, set_function)
               VALUES (:configuration_group_id:, :configuration_key:, :configuration_title:, :configuration_value:, :configuration_description:, :sort_order:, :date_added:, :use_function:, :set_function:)
-              ON DUPLICATE KEY UPDATE configuration_group_id = :configuration_group_id:";
+              ON DUPLICATE KEY UPDATE configuration_group_id = :configuration_group_id:, sort_order = :sort_order:";
             $sql = $db->bindVars($sql, ':configuration_group_id:', $config_item['configuration_group_id']['value'], $config_item['configuration_group_id']['type']);
             $sql = $db->bindVars($sql, ':configuration_key:', $config_item['configuration_key']['value'], $config_item['configuration_key']['type']);
             $sql = $db->bindVars($sql, ':configuration_title:', $config_item['configuration_title']['value'], $config_item['configuration_title']['type']);
@@ -410,4 +429,4 @@ if ($zc150) { // continue Zen Cart 1.5.0
         $messageStack->add('Updated sort order configuration for ' . $module_name , 'success');
     } // End of New Install
 
-} // END OF VERSION 1.5.x INSTALL
+} // END OF VERSION 1.5.x and 1.3.X INSTALL
