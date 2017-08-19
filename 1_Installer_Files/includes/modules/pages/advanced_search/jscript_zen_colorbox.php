@@ -13,7 +13,7 @@ if (ZEN_COLORBOX_STATUS == 'true') {
   require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/jquery_colorbox.php');
 ?>
 
-<script language="javascript" type="text/javascript">
+<script type="text/javascript">
 <?php
 $anchor = 'a[href*="popupWindow"]';
 $closenear = 'p';

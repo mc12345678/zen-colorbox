@@ -20,12 +20,12 @@ if (function_exists('zen_colorbox') && ZEN_COLORBOX_STATUS == 'true') {
     $rel = 'colorbox-' . rand(100, 999);
   }
 ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 document.write('<?php echo '<a href="' . zen_colorbox($products_image_large, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT) . '" rel="' . $rel . '" class="' . "nofollow" . '" title="' . addslashes($products_name) . '">' . zen_image($products_image_medium, addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>'; ?>');
 //--></script>
 <?php } else { ?>
 <?php // eof Zen Colorbox 2012-04-30 niestudio ?>
-<script language="javascript" type="text/javascript"><!--
+<script type="text/javascript"><!--
 document.write('<?php echo '<a href="javascript:popupWindow(\\\'' . zen_href_link(FILENAME_POPUP_IMAGE, 'pID=' . $_GET['products_id']) . '\\\')">' . zen_image(addslashes($products_image_medium), addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br /><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '</span></a>'; ?>');
 //--></script>
 <?php // bof Zen Colorbox 2012-04-30 niestudio ?>
