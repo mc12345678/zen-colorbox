@@ -14,19 +14,10 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 ?>
 
 <script language="javascript" type="text/javascript">
-jQuery(function($) {
-  // CouponHelp on checkout step 2
-  var couponLink = $('a[href*="couponpopupWindow"]');
-  var couponUrl = couponLink.attr('href').match(/'(.*?)'/)[1];
-  couponLink.attr({
-    'href':'#'
-  }).colorbox({
-    'href':couponUrl,
-    width: '550px',
-    onComplete: function(){
-      $('#cboxLoadedContent').find('a[href*="window.close"]').closest('p').hide();
-    }
-  });
-});
+<?php
+$anchor = 'a[href*="couponpopupWindow"]';
+$closenear = 'p';
+require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_link.php');
+?>
 </script>
 <?php  }

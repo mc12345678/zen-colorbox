@@ -15,30 +15,12 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 <script language="javascript" type="text/javascript">
 <?php
   require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/autoload_default.php');
+  $anchor = 'a[href*="session_win"]';
+  $closenear = 'p';
+  $zcb_given = zen_href_link(FILENAME_INFO_SHOPPING_CART);
+
+  require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_js_link.php');
+  unset($zcb_given);
 ?>
-
-jQuery(function($) {
-  //select the help link based on the original js function name
-  var linkedvar = $('a[href*="session_win"]');
-  linkedvar.attr({
-    'href':'#'
-  }).colorbox({
-    'href':'<?php echo zen_href_link(FILENAME_INFO_SHOPPING_CART); ?>',
-    width: '500px',
-    onComplete: function(){
-      $('#cboxLoadedContent').find('a[href*="window.close"]').closest('p').hide();
-    },
-    onClosed: function(){
-
-      var container = $('html'),
-          scrollTo = linkedvar;
-
-      container.removeClass('no-fouc');
-
-      container.scrollTop(
-          scrollTo.offset().top - container.offset().top + container.scrollTop()
-      );
-    }
-  });
-});
-</script><?php  }
+</script>
+<?php  }
