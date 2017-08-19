@@ -10,7 +10,7 @@ if (!defined('IS_ADMIN_FLAG')) {
     die('Illegal Access');
 }
 
-if ($_SERVER['SCRIPT_NAME'] !== DIR_WS_ADMIN . (!strstr(FILENAME_LOGIN, '.php') ? FILENAME_LOGIN . '.php' : FILENAME_LOGIN)) {
+if ($_SERVER['SCRIPT_NAME'] !== DIR_WS_ADMIN . (!strstr(FILENAME_LOGIN, '.php') ? FILENAME_LOGIN . '.php' : FILENAME_LOGIN) && $_SERVER['SCRIPT_NAME'] !== DIR_WS_ADMIN . (!strstr(FILENAME_LOGOFF, '.php') ? FILENAME_LOGOFF . '.php' : FILENAME_LOGOFF)) {
 
     $module_constant = 'ZEN_COLORBOX'; // This should be a UNIQUE name followed by _VERSION for convention
     $module_installer_directory = DIR_FS_ADMIN . 'includes/installers/zen_colorbox'; // This is the directory your installer is in, usually this is lower case
