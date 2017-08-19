@@ -17,14 +17,6 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
     $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
   }
 
-  $basepath = "";
-  $realBase = realpath($basepath);
-  $userpath = $basepath . $src;
-  $realUserPath = realpath($userpath);
-  if ($realUserPath === false || strpos($realUserPath, $realBase) !== 0) {
-      $src = '';
-  }
-
   if ((empty($src) || ($src == DIR_WS_IMAGES)) && (IMAGE_REQUIRED == 'false')) {
     return false;
   }
@@ -38,6 +30,15 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
   if (function_exists('handle_image')) {
     $newimg = handle_image($src, $alt, $width, $height, $parameters);
     list($src, $alt, $width, $height, $parameters) = $newimg; 
+  }
+
+  $basepath = "";
+  $realBase = realpath($basepath);
+  $userpath = $basepath . $src;
+  $realUserPath = realpath($userpath);
+
+  if ($realUserPath === false || strpos($realUserPath, $realBase) !== 0) {
+      $src = ''; // This is chosen as compared to say a missing image file as a security related action.  Basically in a working, secure system there should be no reason that this is ever executed.
   }
 
   $image = zen_output_string($src);
