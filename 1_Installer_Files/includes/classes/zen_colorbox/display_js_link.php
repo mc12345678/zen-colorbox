@@ -13,7 +13,13 @@
   // Link Information
   var displayLink = $('<?php echo $anchor; ?>');
   if (displayLink.length != 0) {
-    var displayLinkUrl = displayLink.attr('href').match(/'(.*?)'/)[1];
+    var displayLinkUrl = <?php
+    if(empty($zcb_given)) {
+                       ?>displayLink.attr('href').match(/'(.*?)'/)[1];<?php 
+     } else {
+                       echo '"' . $zcb_given . '";' . PHP_EOL; 
+     }
+     ?>
     displayLink.attr({
       'href':'#'
     }).colorbox({
