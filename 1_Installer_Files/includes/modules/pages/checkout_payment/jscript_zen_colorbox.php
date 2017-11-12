@@ -17,7 +17,7 @@ if (ZEN_COLORBOX_STATUS == 'true') {
 <?php
 $anchor = 'a[href*="couponpopupWindow"]';
 $closenear = 'p';
-require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_link.php');
+require_once(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/display_js_link.php');
 ?>
 </script>
 <?php  }
