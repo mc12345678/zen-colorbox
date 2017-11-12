@@ -33,7 +33,6 @@ if (ZEN_COLORBOX_COUNTER == 'true')
 }
 else 
 {
-	echo ''; 
+	echo '""'; 
 }
-;
-?>
+
