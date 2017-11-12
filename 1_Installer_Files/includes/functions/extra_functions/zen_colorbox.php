@@ -11,7 +11,7 @@
 
 function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = '') {
   global $template_dir;
-  
+
   //auto replace with defined missing image
   if ($src == DIR_WS_IMAGES and PRODUCTS_IMAGE_NO_IMAGE_STATUS == '1') {
     $src = DIR_WS_IMAGES . PRODUCTS_IMAGE_NO_IMAGE;
@@ -29,7 +29,7 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
   // hook for handle_image() function such as Image Handler etc
   if (function_exists('handle_image')) {
     $newimg = handle_image($src, $alt, $width, $height, $parameters);
-    list($src, $alt, $width, $height, $parameters) = $newimg; 
+    list($src, $alt, $width, $height, $parameters) = $newimg;
   }
 
   $basepath = "";
@@ -45,4 +45,3 @@ function zen_colorbox($src, $alt = '', $width = '', $height = '', $parameters = 
 
   return $image;
 }
-?>
