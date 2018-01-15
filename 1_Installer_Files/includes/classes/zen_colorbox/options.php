@@ -9,30 +9,31 @@
  * @version $Id: options.php 2012-04-30 niestudio $
  */
 
-echo 
-'opacity:' . ZEN_COLORBOX_OVERLAY_OPACITY .
-',speed:' . ZEN_COLORBOX_RESIZE_DURATION .
-',initialWidth:' . ZEN_COLORBOX_INITIAL_WIDTH . 
-',initialHeight:' . ZEN_COLORBOX_INITIAL_HEIGHT . 
-',overlayClose:' . ZEN_COLORBOX_CLOSE_OVERLAY .
-',loop:' . ZEN_COLORBOX_LOOP;
+?>
+  opacity:<?php echo ZEN_COLORBOX_OVERLAY_OPACITY; ?>
+  ,speed:<?php echo ZEN_COLORBOX_RESIZE_DURATION; ?>
+  ,initialWidth:<?php echo ZEN_COLORBOX_INITIAL_WIDTH; ?>
+  ,initialHeight:<?php echo ZEN_COLORBOX_INITIAL_HEIGHT; ?>
+  ,overlayClose:<?php echo ZEN_COLORBOX_CLOSE_OVERLAY; ?>
+  ,loop:<?php echo ZEN_COLORBOX_LOOP;
+
 if (ZEN_COLORBOX_SLIDESHOW == 'true')
 {
-echo
-	',slideshow:' . ZEN_COLORBOX_SLIDESHOW . 
-	',slideshowAuto:' . ZEN_COLORBOX_SLIDESHOW_AUTO . 
-	',slideshowSpeed:' . ZEN_COLORBOX_SLIDESHOW_SPEED . 
-	',slideshowStart:' . '"' . ZEN_COLORBOX_SLIDESHOW_START_TEXT . '"'. 
-	',slideshowStop:' . '"' . ZEN_COLORBOX_SLIDESHOW_STOP_TEXT . '"';
+?>
+  ,slideshow:<?php echo ZEN_COLORBOX_SLIDESHOW; ?>
+  ,slideshowAuto:<?php echo ZEN_COLORBOX_SLIDESHOW_AUTO; ?>
+  ,slideshowSpeed:<?php echo ZEN_COLORBOX_SLIDESHOW_SPEED; ?>
+  ,slideshowStart:"<?php echo ZEN_COLORBOX_SLIDESHOW_START_TEXT; ?>"
+  ,slideshowStop:"<?php echo ZEN_COLORBOX_SLIDESHOW_STOP_TEXT; ?>"
+<?php
 }
-echo 
-',current:'; 
+?>,current:<?php
 if (ZEN_COLORBOX_COUNTER == 'true') 
 {
-	echo '"{current} of {total}"'; 
+	?>"{current} of {total}"<?php
 }
 else 
 {
-	echo '""'; 
+	?>""<?php
 }
 
