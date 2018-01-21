@@ -15,7 +15,26 @@
   ,initialWidth:<?php echo ZEN_COLORBOX_INITIAL_WIDTH; ?>
   ,initialHeight:<?php echo ZEN_COLORBOX_INITIAL_HEIGHT; ?>
   ,overlayClose:<?php echo ZEN_COLORBOX_CLOSE_OVERLAY; ?>
-  ,loop:<?php echo ZEN_COLORBOX_LOOP;
+  ,loop:<?php echo ZEN_COLORBOX_LOOP; ?>
+<?php if (defined('ZEN_COLORBOX_PREV_TEXT')) { ?>
+  ,prev:"<?php echo ZEN_COLORBOX_PREV_TEXT; ?>"
+<?php } ?>
+<?php if (defined('ZEN_COLORBOX_NEXT_TEXT')) { ?>
+  ,next:"<?php echo ZEN_COLORBOX_NEXT_TEXT; ?>"
+<?php } ?>
+<?php if (defined('ZEN_COLORBOX_CLOSE_TEXT')) { ?>
+  ,close:"<?php echo ZEN_COLORBOX_CLOSE_TEXT; ?>"
+<?php } ?>
+<?php if (defined('ZEN_COLORBOX_XHRERROR_TEXT')) { ?>
+  ,xhrError:"<?php echo ZEN_COLORBOX_XHRERROR_TEXT; ?>"
+<?php } ?>
+<?php if (defined('ZEN_COLORBOX_IMGERROR_TEXT')) { ?>
+  ,imgError:"<?php echo ZEN_COLORBOX_IMGERROR_TEXT; ?>"
+<?php } ?>
+<?php if (defined('ZEN_COLORBOX_TRANSITION') && ZEN_COLORBOX_TRANSITION != '') { ?>
+  ,transition:"<?php echo ZEN_COLORBOX_TRANSITION; ?>"
+<?php } ?>
+  <?php
 
 if (ZEN_COLORBOX_SLIDESHOW == 'true')
 {
@@ -30,10 +49,10 @@ if (ZEN_COLORBOX_SLIDESHOW == 'true')
 ?>,current:<?php
 if (ZEN_COLORBOX_COUNTER == 'true') 
 {
-	?>"{current} of {total}"<?php
+	?>"<?php echo sprintf(ZEN_COLORBOX_COUNTER1_TEXT, '{current}', '{total}'); ?>"<?php
 }
 else 
 {
-	?>""<?php
+	?>"<?php echo sprintf(ZEN_COLORBOX_COUNTER3_TEXT, '{current}', '{total}'); ?>"<?php
 }
 
