@@ -23,12 +23,36 @@
   - Modified includes\classes\zen_colorbox\options.php to remove the output from a string to be echoed and instead to
       be text to be output as part of the html page and as necessary for php to be echoed.  This is intended to improve
       readability and make it easier to modify.
+  - Moved language related items to the languages directory instead of the database or a class file in order to support
+      multiple languages.  Language file is included in the base install with template override capability.
+  - Revised the includes/classes/zen_color
   
 */
 
 $zc150 = (PROJECT_VERSION_MAJOR > 1 || (PROJECT_VERSION_MAJOR == 1 && substr(PROJECT_VERSION_MINOR, 0, 3) >= 5));
 $zc130 = (PROJECT_VERSION_MAJOR > 1 || (PROJECT_VERSION_MAJOR == 1 && substr(PROJECT_VERSION_MINOR, 0, 3) >= 3));
 if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
+
+if (defined('ZEN_COLORBOX_PREV_TEXT')) {
+  if (defined('ZEN_COLORBOX_SLIDESHOW_START_TEXT') && zen_get_configuration_key_value('ZEN_COLORBOX_SLIDESHOW_START_TEXT') === 'start slideshow') {
+    $db->Execute("DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'ZEN_COLORBOX_SLIDESHOW_START_TEXT'");
+    if (function_exists('zen_record_admin_activity')) {
+      zen_record_admin_activity('Deleted configuration key ZEN_COLORBOX_SLIDESHOW_START_TEXT', 'info');
+    }
+    $messageStack->add("Configuration table Slideshow Start Text for " . $module_name . " v" . $current_version . " has been removed.", 'success');
+  }
+  if (defined('ZEN_COLORBOX_SLIDESHOW_STOP_TEXT') && zen_get_configuration_key_value('ZEN_COLORBOX_SLIDESHOW_STOP_TEXT') === 'stop slideshow') {
+    $db->Execute("DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'ZEN_COLORBOX_SLIDESHOW_STOP_TEXT'");
+    if (function_exists('zen_record_admin_activity')) {
+      zen_record_admin_activity('Deleted configuration key ZEN_COLORBOX_SLIDESHOW_STOP_TEXT', 'info');
+    }
+    $messageStack->add("Configuration table Slideshow Stop Text for " . $module_name . " v" . $current_version . " has been removed.", 'success');
+  }
+} else {
+  $messageStack->add("Language file for " . $module_name . " v" . $current_version . " is not accessible.", 'success');
+  break;
+}
+
 
 
 } // END OF VERSION 1.5.x and 1.3.X INSTALL
