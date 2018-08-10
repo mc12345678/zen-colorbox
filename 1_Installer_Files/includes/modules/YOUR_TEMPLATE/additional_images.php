@@ -89,7 +89,7 @@ if ($num_images) {
     $products_image_large = str_replace(DIR_WS_IMAGES, DIR_WS_IMAGES . 'large/', $products_image_directory) . str_replace($products_image_extension, '', $file) . IMAGE_SUFFIX_LARGE . $products_image_extension;
 //  Begin Image Handler changes 1 of 2
     if (function_exists('handle_image')) {
-        $newimg = handle_image($products_image_large, addslashes($products_name), LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT, '');
+        $newimg = handle_image($products_image_large, addslashes($products_name), defined('LARGE_IMAGE_WIDTH') ? LARGE_IMAGE_WIDTH : '', defined('LARGE_IMAGE_HEIGHT') ? LARGE_IMAGE_HEIGHT : '', '');
         list($src, $alt, $width, $height, $parameters) = $newimg;
         $products_image_large = zen_output_string($src);
     }
