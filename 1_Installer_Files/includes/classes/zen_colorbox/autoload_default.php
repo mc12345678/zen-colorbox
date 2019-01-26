@@ -11,6 +11,6 @@
 ?>
 jQuery(function($) {
 	$("a[data-colorbox^='colorbox']").colorbox({<?php require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/options.php'); ?>});;
-  // Disable Colobox on main reviews page image
+  // Disable Colorbox on main reviews page image
   $("#productMainImageReview a").removeAttr("data-colorbox");
 });
