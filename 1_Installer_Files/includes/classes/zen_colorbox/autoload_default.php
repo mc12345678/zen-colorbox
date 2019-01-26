@@ -10,7 +10,7 @@
  */
 ?>
 jQuery(function($) {
-	$("a[rel^='colorbox']").colorbox({<?php require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/options.php'); ?>});;
-  // Disable Colobox on main reviews page image
-  $("#productMainImageReview a").removeAttr("rel");
+	$("a[data-cbox-rel^='colorbox']").colorbox({<?php require(DIR_FS_CATALOG . DIR_WS_CLASSES . 'zen_colorbox/options.php'); ?>});;
+  // Disable Colorbox on main reviews page image
+  $("#productMainImageReview a").removeAttr("data-cbox-rel");
 });
