@@ -368,7 +368,7 @@ if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
     {
         $Zen_ColorboxPageExists = zen_page_key_exists('config' . $admin_page);
     } else {
-        $Zen_ColorboxPageExists_result = $db->Execute("SELECT FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = 'config" . $admin_page . "' LIMIT 1");
+        $Zen_ColorboxPageExists_result = $db->Execute("SELECT page_key FROM " . TABLE_ADMIN_PAGES . " WHERE page_key = 'config" . $admin_page . "' LIMIT 1");
         if ($Zen_ColorboxPageExists_result->EOF && $Zen_ColorboxPageExists_result->RecordCount() == 0) {
         } else {
             $Zen_ColorboxPageExists = true;
