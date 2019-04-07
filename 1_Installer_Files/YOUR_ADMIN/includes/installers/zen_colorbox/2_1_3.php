@@ -56,12 +56,12 @@ if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
     if (function_exists('zen_record_admin_activity')) {
       zen_record_admin_activity('Deleted configuration key ZEN_COLORBOX_SLIDESHOW_START_TEXT', 'info');
     }
-    $messageStack->add("Configuration table Slideshow Start Text for " . $module_name . " v" . $this_files_version . " has been removed.", 'success');
+    $messageStack->add("Configuration table Slideshow Start Text for " . $module_name . " has been removd by v" . $this_files_version . " upgrade.", 'success');
     $return_cancel = false;
   } elseif (defined('ZEN_COLORBOX_SLIDESHOW_START_TEXT')) {
     $result = $db->Execute("SELECT configuration_key FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'ZEN_COLORBOX_SLIDESHOW_START_TEXT'");
     if (!$result->EOF) {
-      $messageStack->add("Configuration table Slideshow Start Text for " . $module_name . " v" . $this_files_version . " is still defined in the database and is not currently set to its default value of \'start slideshow\'. This prevents removal from the database in place of the language defined version.", 'warning');
+      $messageStack->add("Configuration table Slideshow Start Text is still defined in the database and is not currently set to its default value of \'start slideshow\'. This prevents removal from the database in place of the language defined version as part of upgrade to " . $module_name . " v" . $this_files_version . ".", 'warning');
       $return_cancel = true;
     }
   }
@@ -70,12 +70,12 @@ if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
     if (function_exists('zen_record_admin_activity')) {
       zen_record_admin_activity('Deleted configuration key ZEN_COLORBOX_SLIDESHOW_STOP_TEXT', 'info');
     }
-    $messageStack->add("Configuration table Slideshow Stop Text for " . $module_name . " v" . $this_files_version . " has been removed.", 'success');
+    $messageStack->add("Configuration table Slideshow Stop Text for " . $module_name . " has been removd by v" . $this_files_version . " upgrade.", 'success');
     $return_cancel = ($return_cancel ? true : false);
   } elseif (defined('ZEN_COLORBOX_SLIDESHOW_STOP_TEXT')) {
     $result = $db->Execute("SELECT configuration_key FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = 'ZEN_COLORBOX_SLIDESHOW_STop_TEXT'");
     if (!$result->EOF) {
-      $messageStack->add("Configuration table Slideshow Stop Text for " . $module_name . " v" . $this_files_version . " is still defined in the database and is not currently set to its default value of \'stop slideshow\'. This prevents removal from the database in place of the language defined version.", 'warning');
+      $messageStack->add("Configuration table Slideshow Stop Text is still defined in the database and is not currently set to its default value of \'stop slideshow\'. This prevents removal from the database in place of the language defined version as part of upgrade to " . $module_name . " v" . $this_files_version . ".", 'warning');
       $return_cancel = true;
     }
   }
