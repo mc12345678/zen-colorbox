@@ -54,13 +54,13 @@
         </h3>
         <div class='alert alert-danger backup-warning'>
           <h3>BACKUP</h3>
-          <p>Be sure to make a backup of your <strong>database</strong> and you <strong>site files</strong> before you continue! <br> The <strong>BEST</strong> recommendation is to do this on a development version of your site. If you are serious about running your store it is always worth having a second version of the store so that you can experiment on that first. I know that this seems like a lot of work but it really is worth it and does not actually take that much time. <br>
+          <p>Be sure to make a backup of your <strong>database</strong> and your <strong>site files</strong> before you continue! <br> The <strong>BEST</strong> recommendation is to do this on a development version of your site. If you are serious about running your store, it is always worth having a second version of the store so that you can experiment on that first. I know that this seems like a lot of work but it really is worth it and does not actually take that much time. <br>
           <a class='btn btn-xs btn-danger' href='http://www.zen-cart.com/content.php?144-how-can-i-do-a-database-backup-with-phpmyadmin' target='_blank'>How?</a>
           <button class='btn btn-xs btn-danger btn-dismiss-warning'>Dismiss</button>
         </div>
         <div class="alert alert-danger backup-warning">
           <h3>BEFORE YOU INSTALL READ THIS!!!</h3>
-          <p>Some files that Zen-Colorbox modifies are core files. This means that Zen-Colorbox overwrites the existing files that Zen Cart uses. If your site has no modifications to these files then there are no problems. If your installation has existing modifications to you files then you will have to carefully merge the existing modifications with the modifications that Zen-Colorbox makes.</p>
+          <p>Some files that Zen-Colorbox modifies are core files. This means that Zen-Colorbox overwrites the existing files that Zen Cart uses. If your site has no modifications to these files then there are no problems. If your installation has existing modifications to your files then you will have to carefully merge the existing modifications with the modifications that Zen-Colorbox makes.</p>
 
 
 
@@ -87,6 +87,17 @@
         </div>
         <ol class='install-steps'>
           <li>
+            For Zen Cart 1.5.6 and above:
+            Delete the following folder:
+            <ul>
+              <li>1_Installer_Files/includes/modules/<strong class = "folder-name">YOUR_TEMPLATE</strong></li>
+            </ul>
+            Rename the following folders to match <em>your</em> template folder.
+            <ul>
+              <li>1_Installer_Files/includes/languages/<strong class = "folder-name">YOUR_TEMPLATE</strong></li>
+              <li>1_Installer_Files/includes/templates/<strong class = "folder-name">YOUR_TEMPLATE</strong></li>
+            </ul>
+            For any sub-version of Zen Cart 1.5.5 and below:
             Rename the following folders to match <em>your</em> template folder.
             <ul>
               <li>1_Installer_Files/includes/languages/<strong class = "folder-name">YOUR_TEMPLATE</strong></li>
