@@ -26,6 +26,11 @@
   - Moved language related items to the languages directory instead of the database or a class file in order to support
       multiple languages.  Language file is included in the base install with template override capability.
   - Revised the includes/classes/zen_color
+  - Modified the ZC 1.5.0 installer to better support upgrade from a previous version supporting only a partial removal of previous data entries.
+  - Added an observer to support the additional images file processing of Zen Cart 1.5.6.
+  - Changed the html indicator for hooking into this program from rel= to data-cbox-rel=
+  - Incorporated a check for 'LARGE_IMAGE_WIDTH' and 'LARGE_IMAGE_HEIGHT' setting to an empty string if not defined.
+  - Updated jscript/jquery.colorbox-min.js to support jQuery 3.x.
   
 */
 
