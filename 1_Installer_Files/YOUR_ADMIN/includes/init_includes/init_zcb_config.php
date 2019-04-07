@@ -88,7 +88,7 @@ if ($_SERVER['SCRIPT_NAME'] !== DIR_WS_ADMIN . (!strstr(FILENAME_LOGIN, '.php') 
                             $cancel_install = include($module_installer_directory . '/' . $installer);
                             $current_version = str_replace("_", ".", substr($installer, 0, -1 * $file_extension_len));
                             if ($cancel_install === true) {
-                                $messageStack->add("Stopped installation of " . $module_name . " at v" . $current_version, 'success');
+                                $messageStack->add("Stopped installation of " . $module_name . " at v" . $current_version, 'warning');
                                 break;
                             }
                             $db->Execute("UPDATE " . TABLE_CONFIGURATION . " SET configuration_value = '" . $current_version . "', set_function = 'zen_cfg_select_option(array(\'" . $current_version . "\'),' WHERE configuration_key = '" . $module_constant . "_VERSION' LIMIT 1;");
