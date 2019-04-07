@@ -9,7 +9,7 @@
  * @version $Id: zen_colorbox.php 2012-04-30 niestudio $
  */
 
-if (ZEN_COLORBOX_STATUS == 'true') {
+  if (ZEN_COLORBOX_STATUS == 'true') {
     if (ZEN_COLORBOX_GALLERY_MODE == 'true') {
       $data_colorbox = 'colorbox';
     } else {
