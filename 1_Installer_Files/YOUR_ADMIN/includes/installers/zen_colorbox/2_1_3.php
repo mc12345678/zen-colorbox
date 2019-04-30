@@ -31,6 +31,8 @@
   - Changed the html indicator for hooking into this program from rel= to data-cbox-rel=
   - Incorporated a check for 'LARGE_IMAGE_WIDTH' and 'LARGE_IMAGE_HEIGHT' setting to an empty string if not defined.
   - Updated jscript/jquery.colorbox-min.js to support jQuery 3.x.
+  - Added plugin check to ensure that even on upgrade from older versions that in PHP 7.2+ environments that the constant
+      is defined and removal by admin/includes/installers/zen_colorbox/uninstall_zcb.sql is not required.
   
 */
 
@@ -47,6 +49,12 @@ if ($zc150 || $zc130) { // continue Zen Cart 1.5.0 or Zen Cart 1.3.x
     include_once (DIR_FS_CATALOG_LANGUAGES . 'english/zen_colorbox_language.php');
   }
 
+  if (!defined($module_constant . '_PLUGIN_CHECK')) {
+    $db->Execute("INSERT INTO " . TABLE_CONFIGURATION . " (configuration_title, configuration_key, configuration_value, configuration_description, configuration_group_id, sort_order, date_added, use_function, set_function) VALUES
+                          ('" . $module_name . " (Update Check)', '" . $module_constant . "_PLUGIN_CHECK', '" . SHOW_VERSION_UPDATE_IN_HEADER . "', 'Allow version checking if Zen Cart version checking enabled<br/><br/>If false, no version checking performed.<br/>If true, then only if Zen Cart version checking is on:', " . $configuration_group_id . ", 15, NOW(), NULL, 'zen_cfg_select_option(array(\'true\', \'false\'),');");
+    define($module_constant . '_PLUGIN_CHECK', true);
+  }
+  
   $this_files_version = str_replace("_", ".", substr($installer, 0, -1 * $file_extension_len));
   $return_cancel = true;
 
