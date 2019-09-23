@@ -21,7 +21,7 @@ if (function_exists('zen_colorbox') && ZEN_COLORBOX_STATUS == 'true') {
   }
 ?>
 <script type="text/javascript"><!--
-document.write('<?php echo '<a href="' . zen_colorbox($products_image_large, addslashes($products_name), defined('LARGE_IMAGE_WIDTH') ? LARGE_IMAGE_WIDTH : '', defined('LARGE_IMAGE_HEIGHT') ? LARGE_IMAGE_HEIGHT : '') . '" data-cbox-rel="' . $data_colorbox . '" class="' . "nofollow" . '" title="' . zen_output_string_protected($products_name) . '">' . zen_image($products_image_medium, addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br \/><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '<\/span><\/a>'; ?>');
+document.write('<?php echo '<a href="' . zen_colorbox($products_image_large, addslashes($products_name), defined('LARGE_IMAGE_WIDTH') ? LARGE_IMAGE_WIDTH : '', defined('LARGE_IMAGE_HEIGHT') ? LARGE_IMAGE_HEIGHT : '') . '" data-cbox-rel="' . $data_colorbox . '" class="' . "nofollow" . '" title="' . zen_output_string_protected(addslashes($products_name)) . '">' . zen_image($products_image_medium, addslashes($products_name), MEDIUM_IMAGE_WIDTH, MEDIUM_IMAGE_HEIGHT) . '<br \/><span class="imgLink">' . TEXT_CLICK_TO_ENLARGE . '<\/span><\/a>'; ?>');
 //--></script>
 <?php } else { ?>
 <?php // eof Zen Colorbox 2012-04-30 niestudio ?>
