@@ -60,6 +60,7 @@ class zcObserverZenColorBoxObserver extends base {
      *             'products_name' => $products_name,
      *             'products_image_large' => $products_image_large,
      *             'thumb_slashes' => $thumb_slashes,
+     *             'large_link' = $large_link,
      *             'index' => $i
      *         ),
      *         $script_link,
@@ -77,6 +78,7 @@ class zcObserverZenColorBoxObserver extends base {
             $products_name = $paramsArray['products_name'];
             $products_image_large = $paramsArray['products_image_large'];
             $thumb_slashes = $paramsArray['thumb_slashes'];
+            $large_link = $paramsArray['large_link'];
             $i = $paramsArray['index'];
 
             include DIR_WS_MODULES . zen_get_module_directory('zen_colorbox.php');
